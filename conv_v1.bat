@@ -1,0 +1,1 @@
+gswin64c -dPDFX -dBATCH -dNOPAUSE -dHaveTransparency=false -r20 -dProcessColorModel=/DeviceCMYK -sColorConversionStrategy=UseDeviceIndependentColor  -sDefaultRGBProfile="default_rgb.icc" -sOutputICCProfile="cmyk_des_renderintent.icc" -dRenderIntent=1 -dDefaultRenderingIntent=/Perceptual -sDEVICE=pdfwrite -sOutputFile=colorbar_v1.pdf PDFX_IntCmyk.ps Colorbar.pdf

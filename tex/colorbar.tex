@@ -1,0 +1,59 @@
+\documentclass{article}
+
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\newcommand{\thecolorbar}{
+	\begin{figure}[!h]
+		\noindent
+		\begin{minipage}{0.5\textwidth}	
+			\hfill
+			\includegraphics[height=8.1cm]{colorbar.png}%	
+			\hspace{1cm}
+		\end{minipage}%
+		\hfill%
+		\begin{minipage}{0.5\textwidth}
+			\begin{tabular}{p{0.7cm} p{0.6cm} p{0.7cm} p{1cm}}
+	          \cellcolor[rgb]{1.00000,1.00000,1.00000}{~} & ~ & \cellcolor[cmyk]{0.00000,0.00060,0.00027,0.00014}{~} & {color1} \\
+	          \cellcolor[rgb]{0.50196,0.50196,0.50196}{~} & ~ & \cellcolor[cmyk]{0.24808,0.20929,0.19661,0.36100}{~} & {color2} \\
+	          \cellcolor[rgb]{0.00000,0.00000,0.00000}{~} & ~ & \cellcolor[cmyk]{0.00000,0.00000,0.00000,0.99997}{~} & {color3} \\
+	          \cellcolor[rgb]{1.00000,0.75294,0.75294}{~} & ~ & \cellcolor[cmyk]{0.00482,0.36851,0.22217,0.00104}{~} & {color4} \\
+	          \cellcolor[rgb]{0.00000,0.50196,0.50196}{~} & ~ & \cellcolor[cmyk]{0.83091,0.21785,0.40542,0.07037}{~} & {color5} \\
+	          \cellcolor[rgb]{0.00000,1.00000,1.00000}{~} & ~ & \cellcolor[cmyk]{0.84741,0.00000,0.02052,0.00026}{~} & {color6} \\
+	          \cellcolor[rgb]{0.00000,0.75294,0.00000}{~} & ~ & \cellcolor[cmyk]{0.78500,0.00000,0.99997,0.00032}{~} & {color7} \\
+	          \cellcolor[rgb]{0.00000,0.25098,0.00000}{~} & ~ & \cellcolor[cmyk]{0.74954,0.41801,0.83082,0.63682}{~} & {color8} \\
+	          \cellcolor[rgb]{0.50196,0.00000,0.00000}{~} & ~ & \cellcolor[cmyk]{0.26699,0.98015,0.81404,0.43252}{~} & {color9} \\
+	          \cellcolor[rgb]{0.75294,0.25098,0.00000}{~} & ~ & \cellcolor[cmyk]{0.08933,0.89926,0.96097,0.06418}{~} & {color10} \\
+	          \cellcolor[rgb]{0.00000,1.00000,0.00000}{~} & ~ & \cellcolor[cmyk]{0.64434,0.00000,0.99997,0.00000}{~} & {color11} \\
+	          \cellcolor[rgb]{1.00000,0.00000,0.00000}{~} & ~ & \cellcolor[cmyk]{0.00012,0.99997,0.99840,0.01167}{~} & {color12} \\
+	          \cellcolor[rgb]{1.00000,0.00000,0.60000}{~} & ~ & \cellcolor[cmyk]{0.00627,0.99583,0.05092,0.00235}{~} & {color13} \\
+	          \cellcolor[rgb]{1.00000,0.50196,0.00000}{~} & ~ & \cellcolor[cmyk]{0.00317,0.75140,0.98398,0.00516}{~} & {color14} \\
+	          \cellcolor[rgb]{0.50196,0.50196,1.00000}{~} & ~ & \cellcolor[cmyk]{0.80249,0.35647,0.00000,0.00034}{~} & {color15} \\
+	          \cellcolor[rgb]{0.47451,0.20000,0.82353}{~} & ~ & \cellcolor[cmyk]{0.77577,0.84265,0.00000,0.00157}{~} & {color16} \\
+	          \cellcolor[rgb]{1.00000,1.00000,0.00000}{~} & ~ & \cellcolor[cmyk]{0.05483,0.00124,0.97897,0.00024}{~} & {color17} \\
+	          \cellcolor[rgb]{1.00000,0.50196,0.50196}{~} & ~ & \cellcolor[cmyk]{0.00673,0.76382,0.56541,0.00029}{~} & {color18} \\
+	          \cellcolor[rgb]{0.20000,0.40000,0.00000}{~} & ~ & \cellcolor[cmyk]{0.74580,0.29775,0.94908,0.26606}{~} & {color19} \\
+			\end{tabular}%
+		\end{minipage}%
+		\caption{left - png image; center - table with RGB fill; right - table with CMYK fill}
+				 
+	\end{figure}%
+}
+
+\begin{document}
+\thecolorbar
+\clearpage
+\thecolorbar
+
+\begin{tikzpicture}
+    \draw [ultra thick, draw=black, fill=yellow, opacity=0.2]
+       (0,0) -- (0,1) -- (1,1) -- cycle;
+       
+    \draw [ultra thick, draw=black, fill=yellow, opacity=0.2]
+           (0.2,-0.2) -- (0.2,0.8) -- (1.2,0.8) -- cycle;
+   \node[align=left] at (3,0) {(some transparency here)};
+\end{tikzpicture}
+
+
+\end{document}

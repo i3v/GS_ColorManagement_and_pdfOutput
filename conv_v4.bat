@@ -1,0 +1,1 @@
+gswin64c -dBATCH -dNOPAUSE -dHaveTransparency=false -r20 -sColorConversionStrategy=UseDeviceIndependentColor -sDefaultRGBProfile="default_rgb.icc" -dRenderIntent=1 -dDefaultRenderingIntent=/Perceptual -sDEVICE=pdfwrite -sOutputFile=colorbar_v4.pdf Colorbar.pdf
