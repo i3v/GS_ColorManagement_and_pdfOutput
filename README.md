@@ -95,7 +95,7 @@ Few more details about what's actually happening here:
     since [ this](https://bugs.ghostscript.com/show_bug.cgi?id=700931#c3) ([9.27 docs](https://www.ghostscript.com/doc/9.27/VectorDevices.htm#PDFX) are a bit outdated).  
     * `RenderIntent` is also undocumented. It only affects rasterization as well.
  * `-dDefaultRenderingIntent=/Perceptual` puts said intent to metadata, alongside "Output Intent icc profile" 
-   (which is specified in `PDFX_IntCmyk.ps`), without affecting any stored color values). 
+   (which is specified in `PDFX_IntCmyk.ps`), without affecting any stored color values.
     This makes Acrobat draw everything in cyan.
  * `-dProcessColorModel=/DeviceCMYK` is required, but only valid choice is `/DeviceCMYK`, due to `-sOutputICCProfile="cmyk_des_renderintent.icc"`.
     <br> 
