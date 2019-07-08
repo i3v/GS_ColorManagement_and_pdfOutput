@@ -1,5 +1,6 @@
 A while ago, I've performed some related experiments, trying to get how color management works in Ghostscript 9.27 for pdf output.
 This gist aims to provide some reproducible examples of gs behaviour.
+Related to [this](https://stackoverflow.com/questions/31591554/embed-icc-color-profile-in-pdf/) SO question.
 
 
 Input pdf
@@ -29,14 +30,13 @@ Other inputs
 ------------
 For these experiments, I also use (included in this repo as well):
  * The [cmyk_des_renderintent.icc](http://git.ghostscript.com/?p=ghostpdl.git;a=blob_plain;f=toolbin/color/src_color/cmyk_des_renderintent.icc;hb=d3537a54740d78c5895ec83694a07b3e4f616f61)
-   profile, that is very useful for debugging - as documented in ["Ghostscript 9.21 Color Management"](https://www.ghostscript.com/doc/9.27/GS9_Color_Management.pdf), 
- from the Ghostscript repo is quite handy for experiments like this. 
- It is designed such that different intents output different colors:
+   profile, quite very useful for debugging. As documented in ["Ghostscript 9.21 Color Management"](https://www.ghostscript.com/doc/9.27/GS9_Color_Management.pdf), 
+ it is designed such that different intents output different colors:
    * the "Perceptual" rendering intent (0) outputs cyan only, 
    * the "RelativeColorimetric" intent (1) outputs magenta only 
    * and "Saturation" intent (2) outputs yellow only. 
  * [gs/lib/PDFX_def.ps](http://git.ghostscript.com/?p=ghostpdl.git;a=blob;f=lib/PDFX_def.ps;h=4c34d06de08a33fa7afd734feb833944e968c4ff;hb=refs/heads/gs9.26) 
- from the Ghostscript repo, modified to utilize `cmyk_des_renderintent.icc`. A prefix file for creating a PDF/X-3.
+ from the Ghostscript repo, modified to utilize `cmyk_des_renderintent.icc`. A prefix file for creating PDF/X-3.
 
 
 Types of built-in profiles
@@ -50,7 +50,7 @@ At least two things that might be called "embedded profile":
 Summary
 -------
 
-|exp|output|PDF/X-3|sColorConversionStrategy|dProcessColorModel|sOutputICCProfile   |
+|Exp|output|PDF/X-3|sColorConversionStrategy|dProcessColorModel|sOutputICCProfile   |
 |---|:---:|:---:|--------------------------|------------|---------------------------|
 |1  | pdf | Y   | UseDeviceIndependentColor| DeviceCMYK | cmyk_des_renderintent.icc |
 |2  | pdf | Y   | CMYK                     | DeviceCMYK | cmyk_des_renderintent.icc |
@@ -74,7 +74,7 @@ Let's start from the following (same in `conv_v1.bat`):
  
  ![](screenshots/colorbar_v1%20foxit.PNG)
 
- Here's how the same file looks like this in Adobe Acrobat DC (it takes output intent into account):
+ Here's how the same file looks like in Adobe Acrobat DC (it takes output intent into account):
  
  ![](screenshots/colorbar_v1%20acrobat.PNG)
 
@@ -85,7 +85,7 @@ The output intent profile is also visible in Adobe Preflight:
  ![](screenshots/colorbar_v1%20acrobat%20preflight.PNG)
  
 Few more details about what's actually happening here:
- * `gswin64c` is Windows CLI-only version of the gs. Use just `gs` on linux (the rest is the same).
+ * `gswin64c` is Windows CLI-only version of the gs. Use just `gs` on linux, the rest is the same.
  * `-dHaveTransparency=false` makes sure that the 2nd page would get rasterized (due to the presence of a tikz pic with transparency)
  * `-r20` makes sure rasterization would be clearly visible (due to just 20dpi)
  * `-sOutputICCProfile="cmyk_des_renderintent.icc" -dRenderIntent=1` makes rasterizer produce magenta output.
@@ -93,15 +93,15 @@ Few more details about what's actually happening here:
       (Compare with "Exp 3t" below) 
     * Note that `OutputICCProfile` parameter is not mentioned in [current docs](https://www.ghostscript.com/doc/current/VectorDevices.htm), 
     since [ this](https://bugs.ghostscript.com/show_bug.cgi?id=700931#c3) ([9.27 docs](https://www.ghostscript.com/doc/9.27/VectorDevices.htm#PDFX) are a bit outdated).  
-    * `RenderIntent` is also undocumented. It only affects rasterization as well. 
-    This is why the second page is in magenta in Foxit (see "Other inputs" section).
- * `-dDefaultRenderingIntent=/Perceptual` puts said intent to metadata (without touching any stored color values), so that Acrobat would draw everything in cyan
- * `-dProcessColorModel=/DeviceCMYK` is required, but only valid choice is `cmyk`, due to `-sOutputICCProfile="cmyk_des_renderintent.icc"`.
+    * `RenderIntent` is also undocumented. It only affects rasterization as well.
+ * `-dDefaultRenderingIntent=/Perceptual` puts said intent to metadata, alongside "Output Intent icc profile" 
+   (which is specified in `PDFX_IntCmyk.ps`), without affecting any stored color values). 
+    This makes Acrobat draw everything in cyan.
+ * `-dProcessColorModel=/DeviceCMYK` is required, but only valid choice is `/DeviceCMYK`, due to `-sOutputICCProfile="cmyk_des_renderintent.icc"`.
     <br> 
-    (When `-sColorConversionStrategy=UseDeviceIndependentColor` it only controls whether the second page would 
+    (When `-sColorConversionStrategy=UseDeviceIndependentColor`, `-dProcessColorModel` would control whether the second page would 
     be `ICCBasedRGB` or `ICCBasedCMYK`, if we drop other conflicting options. 
-    This would slightly affect colors we get there.) 
-    
+    This would slightly affect colors we get there.)     
  * `-sDefaultRGBProfile="default_rgb.icc"` is a placeholder for possible experiments with input icc profiles 
     (they generally work OK). Same default is set if this parameter is omitted.
     
@@ -141,7 +141,7 @@ Acrobat:
 ![](screenshots/colorbar_v3%20acrobat%20preflight.PNG)
 
 Acrobat now shows the same as Foxit - now there's no "output intent" profile.
-Both results now look much like the original, even the rasterized part (except for low-res). The `sOutputICCProfile` has no effect. 
+Both results now look much like the original, even the rasterized part (except that it's low-res). The `sOutputICCProfile` has no effect. 
 
 
 
@@ -153,7 +153,7 @@ Now, let's do the same for `tiff` output, where `-sOutputICCProfile` is honored 
 gswin64c -dBATCH -dNOPAUSE -dHaveTransparency=false -r20 -dProcessColorModel=/DeviceCMYK -sColorConversionStrategy=CMYK -sDefaultRGBProfile="default_rgb.icc" -sOutputICCProfile="cmyk_des_renderintent.icc" -dRenderIntent=1 -dDefaultRenderingIntent=/Perceptual -sDEVICE=tiff32nc -sOutputFile=colorbar_v3t.tiff Colorbar.pdf
 ```
 
-We get two-page tiff file, with both pages in magenta. 
+We get two-page tiff file, with both pages in magenta:
 ![](screenshots/colorbar_v3t%20irfan.PNG)
 
 
@@ -173,7 +173,7 @@ Acrobat:
 
 Exp 5 (not PDF/X-3)
 -------------------
-Like (1), but without PDF/X-3:
+Like "Exp 1", but without PDF/X-3:
 ```
 gswin64c -dBATCH -dNOPAUSE -dHaveTransparency=false -r20 -dProcessColorModel=/DeviceCMYK -sColorConversionStrategy=UseDeviceIndependentColor  -sDefaultRGBProfile="default_rgb.icc" -sOutputICCProfile="cmyk_des_renderintent.icc" -dRenderIntent=1 -dDefaultRenderingIntent=/Perceptual -sDEVICE=pdfwrite -sOutputFile=colorbar_v5.pdf Colorbar.pdf
 ```
@@ -186,10 +186,10 @@ Acrobat:
 
 Exp AA1 (Acrobat, embed profile)
 ------------------------------
-Adobe Acrobat (`Tools -> Print Production -> Convert Colors`) provides the following options:
+Adobe Acrobat (`Tools -> Print Production -> Convert Colors`), with the following set of options:
 ![](screenshots/colorbar_AAv1%20settings.png)
 
-Which produces the following result. <br>
+produces the following result: <br>
 Foxit:
 ![](screenshots/colorbar_AAv1%20foxit.PNG)
 Acrobat:
@@ -221,13 +221,10 @@ Conclusion
    * Acrobat embeds the profile, selected by user and actually converts colors using it. Ghostscript is unable to do that.
 * The "Output intent profile" works as expected. <br>
   AFAIU, it requires `-sColorConversionStrategy=UseDeviceIndependentColor`.
-* The `-sOutputICCProfile` does not work for pdf the way it works for tiff. It is undocumented. <br>
+* The `-sOutputICCProfile` does not work for pdf the way it works for tiff. It is undocumented here. <br>
   (But it still affects pages being rasterized, when converting to DeviceIndependent colors. Not sure if it's a bug or a feature.)
 * There's no simple way to, say, avoid color clipping (by specifying intent), when converting from `DeviceRGB` to `DeviceCMYK`.
-  Acrobat, with "embed profile" unchecked, allows to produce a file, with colors converted. Ghostscript is unable to do that.   
-
-Docs do warn, that only a small subset of color management options [is supported](http://git.ghostscript.com/?p=ghostpdl.git;a=blob;f=doc/VectorDevices.htm;h=c939fddfa3f59bf73023f904b7e8d0c7e27729ff;hb=refs/heads/master#l566) for pdf output.
-You can only set default input color profile (e.g. for objects that do not have a profile), but you cannot set: output ICC profile, black generation options, etc.
+  Acrobat, with "embed profile" unchecked, allows to produce a DeviceCMYK file, with colors converted according to the specified icc profile. Ghostscript is unable to do that.   
 
 
 Final notes
@@ -235,7 +232,11 @@ Final notes
 * gs simply ignores unknown switches.
 
 * icc profiles contain independent `local_value->ICC` and `ICC->local_value` tables. 
-  Compare `cmyk_des_renderintent.icc` and `cmyk_src_renderintent.icc` from [this folder](http://git.ghostscript.com/?p=ghostpdl.git;a=tree;f=toolbin/color/src_color;h=44d1d659f24431c185dab2af5ce325ec272cca46;hb=ebfaa2db4cb518a2bc99c1532d4429201a13dfab) (e.g. with [ICC Profile Inspector](http://www.color.org/profileinspector.xalter)).      
+  Compare `cmyk_des_renderintent.icc` and `cmyk_src_renderintent.icc` from [this folder](http://git.ghostscript.com/?p=ghostpdl.git;a=tree;f=toolbin/color/src_color;h=44d1d659f24431c185dab2af5ce325ec272cca46;hb=ebfaa2db4cb518a2bc99c1532d4429201a13dfab) (e.g. with [ICC Profile Inspector](http://www.color.org/profileinspector.xalter)).
+  
+* Docs do warn, that only a small subset of color management options [is supported](http://git.ghostscript.com/?p=ghostpdl.git;a=blob;f=doc/VectorDevices.htm;h=c939fddfa3f59bf73023f904b7e8d0c7e27729ff;hb=refs/heads/master#l566) for pdf output.
+You can only set default input color profile (e.g. for objects that do not have a profile), but you cannot set: output ICC profile, black generation options, etc.
+        
 * [Docs](https://www.ghostscript.com/doc/9.27/VectorDevices.htm) say:
    > DeviceRGB color values are passed unchanged. If a user needs a non trivial color adjustment, a non trivial DefaultRGB color space must be defined. Transfer functions and halftone phases are skipped.
    
