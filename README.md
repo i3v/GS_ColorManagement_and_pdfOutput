@@ -30,7 +30,7 @@ Other inputs
 ------------
 For these experiments, I also use (included in this repo as well):
  * The [cmyk_des_renderintent.icc](http://git.ghostscript.com/?p=ghostpdl.git;a=blob_plain;f=toolbin/color/src_color/cmyk_des_renderintent.icc;hb=d3537a54740d78c5895ec83694a07b3e4f616f61)
-   profile, quite very useful for debugging. As documented in ["Ghostscript 9.21 Color Management"](https://www.ghostscript.com/doc/9.27/GS9_Color_Management.pdf), 
+   profile, quite useful for debugging. As documented in ["Ghostscript 9.21 Color Management"](https://www.ghostscript.com/doc/9.27/GS9_Color_Management.pdf), 
  it is designed such that different intents output different colors:
    * the "Perceptual" rendering intent (0) outputs cyan only, 
    * the "RelativeColorimetric" intent (1) outputs magenta only 
