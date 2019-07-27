@@ -1,0 +1,213 @@
+
+W:\tests\latex\bugs\gs_SO_collink>gswin64c -sDEVICE=pdfwrite -o out2.pdf -sColorConversionStrategy=CMYK -sDefaultRGBProfile=apple_to_jNP_neutrals.icc GS9_Color_Management.pdf 
+GPL Ghostscript 9.27 (2019-04-04)
+Copyright (C) 2018 Artifex Software, Inc.  All rights reserved.
+This software is supplied under the GNU AGPLv3 and comes with NO WARRANTY:
+see the file COPYING for details.
+Processing pages 1 through 42.
+Page 1
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: Form stream has unbalanced q/Q operators (too many q's)
+               Output may be incorrect.
+Page 2
+Page 3
+Page 4
+Page 5
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+Page 6
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 7
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 8
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 9
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 10
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 11
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 12
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 13
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 14
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+
+   **** Error: File has insufficient data for an image.
+               Output may be incorrect.
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 15
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 16
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 17
+Page 18
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: Form stream has unbalanced q/Q operators (too many q's)
+               Output may be incorrect.
+Page 19
+Page 20
+Page 21
+Page 22
+Page 23
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 24
+Page 25
+Page 26
+Page 27
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 28
+Page 29
+Page 30
+Page 31
+Page 32
+Page 33
+Page 34
+Page 35
+Page 36
+Page 37
+Page 38
+Page 39
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 40
+   **** Error reading a content stream. The page may be incomplete.
+               Output may be incorrect.
+   **** Error: File did not complete the page properly and may be damaged.
+               Output may be incorrect.
+Page 41
+Page 42

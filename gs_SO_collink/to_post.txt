@@ -1,0 +1,5 @@
+Sadly, this doesn't work for me with gs9.27 x64, Windows 10, collink v2.1.1, on [this example pdf](https://www.ghostscript.com/doc/9.27/GS9_Color_Management.pdf) - says `Could not find Graphic_RGB apple_to_jNP_neutrals.icc    0   1   0`.
+
+If I simplify the command to `gswin64c -sDEVICE=pdfwrite -o out2.pdf -sColorConversionStrategy=CMYK -sDefaultRGBProfile=apple_to_jNP_neutrals.icc GS9_Color_Management.pdf`, it produces multiple error messages, but some output file is still created. Many objects in it are missing, though.
+
+Any idea what's wrong here?

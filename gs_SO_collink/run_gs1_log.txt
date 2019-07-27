@@ -1,0 +1,8 @@
+
+W:\tests\latex\bugs\gs_SO_collink>gswin64c -q -sDEVICE=pdfwrite -o out1.pdf -sColorConversionStrategy=CMYK -sSourceObjectICC=control.txt GS9_Color_Management.pdf 
+  c:\users\cjl\artifex\gs-release\9.27\ghostpdl-9.27\base\gsicc_manage.c:1241: gsicc_open_search(): Could not find Graphic_RGB apple_to_jNP_neutrals.icc    0   1   0 
++ c:\users\cjl\artifex\gs-release\9.27\ghostpdl-9.27\base\gsicc_manage.c:722: gsicc_set_srcgtag_struct(): setting of control.txt src obj color info failed
+| c:\users\cjl\artifex\gs-release\9.27\ghostpdl-9.27\base\gsicc_manage.c:3033: gs_setsrcgtagicc(): cannot find srctag file
+Unrecoverable error: unknownerror in --.setuserparams2--
+Operand stack:
+    --nostringval--  --nostringval--  --nostringval--
